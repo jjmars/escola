@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Units</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>School</th>
+      <th>Title</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @units.each do |unit| %>
+      <tr>
+        <td><%= unit.school %></td>
+        <td><%= unit.title %></td>
+        <td><%= unit.phone %></td>
+        <td><%= unit.address %></td>
+        <td><%= link_to 'Show', unit %></td>
+        <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
+        <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unit', new_unit_path %>

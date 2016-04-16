@@ -1,0 +1,15 @@
+# Escolas
+
+one:
+  title:   'Escola A'
+  cnpj:    '57.609.131/0001-98'
+  phone:   '(85) 2222-8888'
+  email:   'escolaa@example.com'
+  address: 'Rua A, Fortaleza - CE'
+
+two:
+  title:   'Escola B'
+  cnpj:    '14.421.185/0001-12'
+  phone:   '(85) 4444-6666'
+  email:   'escolab@example.com'
+  address: 'Rua B, Fortaleza - CE'

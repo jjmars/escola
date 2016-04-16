@@ -1,0 +1,15 @@
+# Responsáveis
+
+one:
+  name:    'João Souza'
+  cpf:     '120.105.963-15'
+  phone:   '(85) 2222-8888'
+  email:   'escolaa@example.com'
+  address: 'Rua A, Fortaleza - CE'
+
+two:
+  name:    'Carol Pires'
+  cpf:     '930.400.684-82'
+  phone:   '(85) 4444-6666'
+  email:   'escolab@example.com'
+  address: 'Rua B, Fortaleza - CE'

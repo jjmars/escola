@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>School:</strong>
+  <%= @guardian.school %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @guardian.unit %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @guardian.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @guardian.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @guardian.email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @guardian.address %>
+</p>
+
+<%= link_to 'Edit', edit_guardian_path(@guardian) %> |
+<%= link_to 'Back', guardians_path %>
