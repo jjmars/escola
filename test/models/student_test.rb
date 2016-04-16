@@ -7,7 +7,7 @@ class StudentTest < ActiveSupport::TestCase
       s.guardian   = guardians(:one)
       s.school     = schools(:one)
       s.unit       = units(:one)
-      t.klasses    << klasses(:one)
+      s.klasses    << klasses(:one)
       s.name       = 'Ana Alves'
       s.enrollment = '100111'
       s.phone      = '(85) 3030-3030'
@@ -22,7 +22,7 @@ class StudentTest < ActiveSupport::TestCase
       s.guardian   = guardians(:one)
       s.school     = schools(:one)
       s.unit       = units(:one)
-      # t.klasses    << klasses(:one)
+      # s.klasses    << klasses(:one)
       s.name       = 'Augusto Alves'
       s.enrollment = '100222'
       # s.phone      = '(85) 30303-3030'
@@ -38,7 +38,7 @@ class StudentTest < ActiveSupport::TestCase
       s.school     = schools(:two) # outra escola
       s.unit       = units(:two)
       s.name       = 'José Silva'
-      s.enrollment = '100111' # número de matrícula igual ao da Ana
+      s.enrollment = students(:one).enrollment # o aluno :one é da escola :one
     end
     assert student.save, 'Falhou ao salvar registro válido'
   end
@@ -109,7 +109,7 @@ class StudentTest < ActiveSupport::TestCase
       s.school     = schools(:one)
       s.unit       = units(:one)
       s.name       = 'Ana Alves'
-      s.enrollment = '100111' # esta matrícula já existe nesta escola
+      s.enrollment = students(:one).enrollment # o aluno :one é da escola :one
     end
     assert_not student.save, 'Salvou registro inválido'
     assert_not_nil student.errors[:enrollment], 'Faltou indicar problema na matrícula'

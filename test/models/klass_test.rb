@@ -54,7 +54,7 @@ class KlassTest < ActiveSupport::TestCase
     klass = Klass.new do |k|
       k.school = schools(:one)
       k.unit   = units(:one)
-      k.title  = '6A' # já existe uma turma com este título nesta unidade
+      k.title  = klasses(:one).title
     end
     assert_not klass.save, 'Salvou registro inválido'
     assert_not_nil klass.errors[:title], 'Faltou indicar problema no título'

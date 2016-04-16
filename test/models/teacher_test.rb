@@ -138,7 +138,7 @@ class TeacherTest < ActiveSupport::TestCase
     teacher = Teacher.new do |t|
       t.school  = schools(:one)
       t.name    = 'Aline Alves'
-      t.cpf     = '900.112.815-70' # este professor já está cadastrado nesta escola
+      t.cpf     = teachers(:one).cpf
       t.phone   = '(85) 3030-3030'
       t.email   = 'alinealves@example.com'
       t.address = 'Rua Alfa, 10, Fortaleza - CE'

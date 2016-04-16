@@ -1,1 +1,7 @@
 # Alunos
+
+one:
+  school:     one
+  unit:       one
+  name:       'João Souza'
+  enrollment: '123333'

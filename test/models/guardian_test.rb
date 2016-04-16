@@ -135,7 +135,7 @@ class GuardianTest < ActiveSupport::TestCase
     guardian = Guardian.new do |g|
       g.school  = schools(:one)
       g.name    = 'Aline Alves'
-      g.cpf     = '900.112.815-70' # este responsável já está cadastrado nesta escola
+      g.cpf     = guardians(:one).cpf # o responsável :one é da escola :one
       g.phone   = '(85) 3030-3030'
       g.email   = 'alinealves@example.com'
       g.address = 'Rua Alfa, 10, Fortaleza - CE'

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# CPF and CNPJ validations for ActiveModel and Rails: https://github.com/rfs/validates_cpf_cnpj
+gem 'validates_cpf_cnpj'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
