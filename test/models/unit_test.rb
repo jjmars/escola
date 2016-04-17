@@ -2,6 +2,30 @@ require 'test_helper'
 
 class UnitTest < ActiveSupport::TestCase
   
+  # Relações
+  
+  test 'deve pertencer a 1 escola' do
+    assert_nothing_raised { Unit.new.school }
+  end
+  
+  test 'deve possuir N turmas' do
+    assert_nothing_raised { Unit.new.klasses }
+  end
+  
+  test 'deve estar associado a N professores' do
+    assert_nothing_raised { Unit.new.teachers }
+  end
+
+  test 'deve estar associado a N alunos' do
+    assert_nothing_raised { Unit.new.students }
+  end
+
+  test 'deve estar associado a N responsáveis' do
+    assert_nothing_raised { Unit.new.guardians }
+  end
+
+  # Válidos
+  
   test 'deve salvar válido' do
     unit = Unit.new do |u|
       u.school  = schools(:one)
@@ -31,7 +55,9 @@ class UnitTest < ActiveSupport::TestCase
     end
     assert unit.save, 'Falhou ao salvar registro válido'
   end
-
+  
+  # Inválidos
+  
   test 'deve falhar ao salvar sem título' do
     unit = Unit.new do |u|
       u.school  = schools(:one)

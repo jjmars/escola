@@ -2,6 +2,22 @@ require 'test_helper'
 
 class GuardianTest < ActiveSupport::TestCase
   
+  # Relações
+  
+  test 'deve pertencer a 1 escola' do
+    assert_nothing_raised { Guardian.new.school }
+  end  
+
+  test 'deve estar associado a n unidades' do
+    assert_nothing_raised { Guardian.new.units }
+  end
+  
+  test 'deve possuir N alunos' do
+    assert_nothing_raised { Guardian.new.students }
+  end
+  
+  # Válidos
+  
   test 'deve salvar válido' do
     guardian = Guardian.new do |g|
       g.school  = schools(:one)
@@ -39,6 +55,8 @@ class GuardianTest < ActiveSupport::TestCase
     end
     assert guardian.save, 'Falhou ao salvar registro válido'
   end
+  
+  # Inválidos
   
   test 'deve falhar ao salvar sem escola' do
     guardian = Guardian.new do |g|
@@ -141,6 +159,19 @@ class GuardianTest < ActiveSupport::TestCase
       g.address = 'Rua Alfa, 10, Fortaleza - CE'
     end
     assert_not guardian.save, 'Salvou registro duplicado'
+    assert_not_nil guardian.errors[:cpf], 'Faltou indicar problema no cpf'
+  end
+  
+  test 'deve falhar ao salvar com cpf com valor de cnpj' do
+    guardian = Guardian.new do |g|
+      g.school  = schools(:one)
+      g.name    = 'Camila Castro'
+      g.cpf     = '23.722.118/0001-29' # a versão 0.2.0 da gem validates_cpf_cnpj dava falso-positivo com cnpj
+      g.phone   = '(85) 5050-5050'
+      g.email   = 'camilacastro@example.com'
+      g.address = 'Rua Cravo, 10, Fortaleza - CE'
+    end
+    assert_not guardian.save, 'Salvou registro inválido'
     assert_not_nil guardian.errors[:cpf], 'Faltou indicar problema no cpf'
   end
   

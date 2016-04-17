@@ -2,6 +2,22 @@ require 'test_helper'
 
 class TeacherTest < ActiveSupport::TestCase
   
+  # Relações
+  
+  test 'deve pertencer a 1 escola' do
+    assert_nothing_raised { Teacher.new.school }
+  end
+  
+  test 'deve estar associado a N unidades' do
+    assert_nothing_raised { Teacher.new.units }
+  end
+  
+  test 'deve estar associado a N turmas' do
+    assert_nothing_raised { Teacher.new.klasses }
+  end
+  
+  # Válidos
+  
   test 'deve salvar válido' do
     teacher = Teacher.new do |t|
       t.school  = schools(:one)
@@ -41,6 +57,8 @@ class TeacherTest < ActiveSupport::TestCase
     end
     assert teacher.save, 'Falhou ao salvar registro válido'
   end
+  
+  # Inválidos
   
   test 'deve falhar ao salvar sem escola' do
     teacher = Teacher.new do |t|
@@ -139,6 +157,19 @@ class TeacherTest < ActiveSupport::TestCase
       t.school  = schools(:one)
       t.name    = 'Aline Alves'
       t.cpf     = teachers(:one).cpf
+      t.phone   = '(85) 3030-3030'
+      t.email   = 'alinealves@example.com'
+      t.address = 'Rua Alfa, 10, Fortaleza - CE'
+    end
+    assert_not teacher.save, 'Salvou registro duplicado'
+    assert_not_nil teacher.errors[:cpf], 'Faltou indicar problema no cpf'
+  end
+    
+  test 'deve falhar ao salvar com cpf com valor de cnpj' do
+    teacher = Teacher.new do |t|
+      t.school  = schools(:one)
+      t.name    = 'Aline Alves'
+      t.cpf     = '23.722.118/0001-29' # a versão 0.2.0 da gem validates_cpf_cnpj dava falso-positivo com cnpj
       t.phone   = '(85) 3030-3030'
       t.email   = 'alinealves@example.com'
       t.address = 'Rua Alfa, 10, Fortaleza - CE'

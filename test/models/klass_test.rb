@@ -2,6 +2,26 @@ require 'test_helper'
 
 class KlassTest < ActiveSupport::TestCase
   
+  # Relações
+  
+  test 'deve pertencer a 1 escola' do
+    assert_nothing_raised { Klass.new.school }
+  end
+  
+  test 'deve pertencer a 1 unidade' do
+    assert_nothing_raised { Klass.new.unit }
+  end
+  
+  test 'deve estar associado a N professores' do
+    assert_nothing_raised { Klass.new.teachers }
+  end
+  
+  test 'deve estar associado a N alunos' do
+    assert_nothing_raised { Klass.new.students }
+  end
+  
+  # Válidos
+  
   test 'deve salvar válido' do
     klass = Klass.new do |k|
       k.school = schools(:one)
@@ -19,6 +39,8 @@ class KlassTest < ActiveSupport::TestCase
     end
     assert klass.save, 'Falhou ao salvar registro válido'
   end
+  
+  # Inválidos
   
   test 'deve falhar ao salvar sem escola' do
     klass = Klass.new do |k|

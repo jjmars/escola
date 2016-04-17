@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
 
+# Easy and customizable generation of forged data. https://github.com/sevenwire/forgery
+gem 'forgery', '0.6.0'
+
+# Validate, generate and format CPF/CNPJ numbers. Include command-line tools. https://github.com/rfs/validates_cpf_cnpj
+gem 'cpf_cnpj'
 # CPF and CNPJ validations for ActiveModel and Rails: https://github.com/rfs/validates_cpf_cnpj
-gem 'validates_cpf_cnpj'
+gem 'validates_cpf_cnpj', github: 'jjmars/validates_cpf_cnpj'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'

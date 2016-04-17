@@ -2,6 +2,26 @@ require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
   
+  # Relações
+  
+  test 'deve pertencer a 1 escola' do
+    assert_nothing_raised { Student.new.school }
+  end
+  
+  test 'deve pertencer a 1 unidade' do
+    assert_nothing_raised { Student.new.unit }
+  end
+  
+  test 'deve pertencer a 1 responsável' do
+    assert_nothing_raised { Student.new.guardian }
+  end
+  
+  test 'deve estar associado a N turmas' do
+    assert_nothing_raised { Student.new.klasses }
+  end
+  
+  # Válidos
+  
   test 'deve salvar válido' do
     student = Student.new do |s|
       s.guardian   = guardians(:one)
@@ -42,6 +62,8 @@ class StudentTest < ActiveSupport::TestCase
     end
     assert student.save, 'Falhou ao salvar registro válido'
   end
+  
+  # Inválidos
   
   test 'deve falhar ao salvar sem responsável' do
     student = Student.new do |s|
