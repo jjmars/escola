@@ -2,12 +2,13 @@
 
 <h1>Listing Teachers</h1>
 
+<%= link_to 'New Teacher', new_teacher_path %>
+
 <table>
   <thead>
     <tr>
-      <th>School</th>
       <th>Name</th>
-      <th>Registration number</th>
+      <th>CPF</th>
       <th>Phone</th>
       <th>Email</th>
       <th>Address</th>
@@ -18,9 +19,8 @@
   <tbody>
     <% @teachers.each do |teacher| %>
       <tr>
-        <td><%= teacher.school %></td>
         <td><%= teacher.name %></td>
-        <td><%= teacher.registration_number %></td>
+        <td><%= teacher.cpf %></td>
         <td><%= teacher.phone %></td>
         <td><%= teacher.email %></td>
         <td><%= teacher.address %></td>
@@ -31,7 +31,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Teacher', new_teacher_path %>

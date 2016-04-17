@@ -1,0 +1,25 @@
+<h1><%= current_school.title %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Unidades</th>
+      <th>Turmas</th>
+      <th>Professores</th>
+      <th>Alunos</th>
+      <th>Responsáveis</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% current_school.units.each do |unit| %>
+    <tr>
+      <td><%= link_to unit.title, unit %></td>
+      <td><%= link_to unit.klasses.count, klasses_path(unit_id: unit.id) %></td>
+      <td><%= link_to unit.teachers.count, teachers_path(unit_id: unit.id) %></td>
+      <td><%= link_to unit.students.count, students_path(unit_id: unit.id) %></td>
+      <td><%= link_to unit.guardians.count, guardians_path(unit_id: unit.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -4,7 +4,7 @@ class KlassesController < ApplicationController
   # GET /klasses
   # GET /klasses.json
   def index
-    @klasses = Klass.all
+    @klasses = current_unit ? current_unit.klasses : current_school.klasses
   end
 
   # GET /klasses/1

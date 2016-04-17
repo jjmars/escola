@@ -2,11 +2,11 @@
 
 <h1>Listing Guardians</h1>
 
+<%= link_to 'New Guardian', new_guardian_path %>
+
 <table>
   <thead>
     <tr>
-      <th>School</th>
-      <th>Unit</th>
       <th>Name</th>
       <th>Phone</th>
       <th>Email</th>
@@ -18,8 +18,6 @@
   <tbody>
     <% @guardians.each do |guardian| %>
       <tr>
-        <td><%= guardian.school %></td>
-        <td><%= guardian.unit %></td>
         <td><%= guardian.name %></td>
         <td><%= guardian.phone %></td>
         <td><%= guardian.email %></td>
@@ -31,7 +29,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Guardian', new_guardian_path %>

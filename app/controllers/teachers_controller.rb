@@ -4,7 +4,7 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @teachers = current_unit ? current_unit.teachers : current_school.teachers
   end
 
   # GET /teachers/1

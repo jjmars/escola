@@ -4,7 +4,7 @@ class GuardiansController < ApplicationController
   # GET /guardians
   # GET /guardians.json
   def index
-    @guardians = Guardian.all
+    @guardians = current_unit ? current_unit.guardians : current_school.guardians
   end
 
   # GET /guardians/1

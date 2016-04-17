@@ -2,11 +2,11 @@
 
 <h1>Listing Klasses</h1>
 
+<%= link_to 'New Klass', new_klass_path %>
+
 <table>
   <thead>
     <tr>
-      <th>School</th>
-      <th>Unit</th>
       <th>Title</th>
       <th colspan="3"></th>
     </tr>
@@ -15,8 +15,6 @@
   <tbody>
     <% @klasses.each do |klass| %>
       <tr>
-        <td><%= klass.school %></td>
-        <td><%= klass.unit %></td>
         <td><%= klass.title %></td>
         <td><%= link_to 'Show', klass %></td>
         <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
@@ -25,7 +23,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Klass', new_klass_path %>

@@ -2,10 +2,11 @@
 
 <h1>Listing Units</h1>
 
+<%= link_to 'New Unit', new_unit_path %>
+
 <table>
   <thead>
     <tr>
-      <th>School</th>
       <th>Title</th>
       <th>Phone</th>
       <th>Address</th>
@@ -16,7 +17,6 @@
   <tbody>
     <% @units.each do |unit| %>
       <tr>
-        <td><%= unit.school %></td>
         <td><%= unit.title %></td>
         <td><%= unit.phone %></td>
         <td><%= unit.address %></td>
@@ -27,7 +27,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Unit', new_unit_path %>
