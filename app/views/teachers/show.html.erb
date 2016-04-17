@@ -1,34 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>School:</strong>
-  <%= @teacher.school %>
-</p>
+<h1>Professor</h1>
+
+<%= link_to 'Atualizar', edit_teacher_path(@teacher) %> |
+<%= link_to 'Listar', teachers_path %>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nome</strong>
   <%= @teacher.name %>
 </p>
 
 <p>
-  <strong>Registration number:</strong>
-  <%= @teacher.registration_number %>
+  <strong>CPF:</strong>
+  <%= @teacher.cpf %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>Telefone:</strong>
   <%= @teacher.phone %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>E-mail:</strong>
   <%= @teacher.email %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Endereço:</strong>
   <%= @teacher.address %>
 </p>
 
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+<% t_units = @teacher.units.includes(:klasses) # é usado duas vezes abaixo... %>
+
+<p>
+  <strong>Unidades:</strong>
+</p>
+<ul>
+  <% t_units.each do |u| %>
+  <li><%= link_to u.title, unit_path(u) %></li>
+  <% end %>
+</ul>
+
+<p>
+  <strong>Turmas:</strong>
+</p>
+<% t_units.each do |unit| # lista turmas por unidade %>
+<ul>
+  <li>
+    <%= unit.title %>
+    <ul>
+      <% @teacher.klasses.select{ |k| unit.klasses.include?(k) }.each do |k| # cruza as turmas do professor com as da unidade %>
+      <li><%= link_to k.title, klass_path(k) %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
+<% end %>

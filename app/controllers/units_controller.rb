@@ -4,7 +4,7 @@ class UnitsController < ApplicationController
   # GET /units
   # GET /units.json
   def index
-    @units = @school.units
+    @units = current_school.units
   end
 
   # GET /units/1

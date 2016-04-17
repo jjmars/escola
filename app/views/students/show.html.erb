@@ -1,39 +1,50 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Aluno</h1>
+
+<%= link_to 'Atualizar', edit_student_path(@student) %> |
+<%= link_to 'Listar', students_path %>
+
 <p>
-  <strong>School:</strong>
-  <%= @student.school %>
+  <strong>Unidade:</strong>
+  <%= link_to @student.unit.title, unit_path(@student.unit) %>
 </p>
 
 <p>
-  <strong>Unit:</strong>
-  <%= @student.unit %>
+  <strong>Responsável:</strong>
+  <%= link_to @student.guardian.name, guardian_path(@student.guardian) %>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nome</strong>
   <%= @student.name %>
 </p>
 
 <p>
-  <strong>Registration number:</strong>
-  <%= @student.registration_number %>
+  <strong>Matrícula:</strong>
+  <%= @student.enrollment %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>Telefone:</strong>
   <%= @student.phone %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>E-mail:</strong>
   <%= @student.email %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Endereço:</strong>
   <%= @student.address %>
 </p>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<p>
+  <strong>Turmas:</strong>
+</p>
+<ul>
+  <% @student.klasses.each do |k| %>
+  <li><%= link_to k.title, klass_path(k) %></li>
+  <% end %>
+</ul>

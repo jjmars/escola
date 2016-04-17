@@ -1,16 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Guardians</h1>
+<h1>Responsáveis</h1>
 
-<%= link_to 'New Guardian', new_guardian_path %>
+<%= link_to 'Cadastrar Responsável', new_guardian_path %>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Address</th>
+      <th>CPF</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,12 +17,10 @@
     <% @guardians.each do |guardian| %>
       <tr>
         <td><%= guardian.name %></td>
-        <td><%= guardian.phone %></td>
-        <td><%= guardian.email %></td>
-        <td><%= guardian.address %></td>
-        <td><%= link_to 'Show', guardian %></td>
-        <td><%= link_to 'Edit', edit_guardian_path(guardian) %></td>
-        <td><%= link_to 'Destroy', guardian, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= guardian.cpf %></td>
+        <td><%= link_to 'Ver', guardian %></td>
+        <td><%= link_to 'Atualizar', edit_guardian_path(guardian) %></td>
+        <td><%= link_to 'Apagar', guardian, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

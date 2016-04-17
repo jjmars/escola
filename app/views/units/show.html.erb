@@ -1,24 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>School:</strong>
-  <%= @unit.school %>
-</p>
+<h1>Unidade</h1>
+
+<%= link_to 'Atualizar', edit_unit_path(@unit) %> |
+<%= link_to 'Listar', units_path %>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Nome:</strong>
   <%= @unit.title %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>Telefone:</strong>
   <%= @unit.phone %>
 </p>
 
 <p>
-  <strong>Address:</strong>
-  <%= @unit.address %>
+  <strong>E-mail:</strong>
+  <%= @unit.email %>
 </p>
 
-<%= link_to 'Edit', edit_unit_path(@unit) %> |
-<%= link_to 'Back', units_path %>
+<p>
+  <strong>Endereço:</strong>
+  <%= @unit.address %>
+</p>

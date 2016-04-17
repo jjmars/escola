@@ -1,19 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>School:</strong>
-  <%= @klass.school %>
-</p>
+<h1>Turma</h1>
+
+<%= link_to 'Atualizar', edit_klass_path(@klass) %> |
+<%= link_to 'Listar', klasses_path %>
 
 <p>
-  <strong>Unit:</strong>
-  <%= @klass.unit %>
-</p>
-
-<p>
-  <strong>Title:</strong>
+  <strong>Nome:</strong>
   <%= @klass.title %>
 </p>
 
-<%= link_to 'Edit', edit_klass_path(@klass) %> |
-<%= link_to 'Back', klasses_path %>
+
+<p>
+  <strong>Unidade:</strong>
+  <%= link_to @klass.unit.title, unit_path(@klass.unit) %>
+</p>
+<p>
+  <strong>Alunos:</strong>
+</p>
+<ul>
+  <% @klass.students.each do |s| %>
+  <li><%= link_to s.name, student_path(s) %></li>
+  <% end %>
+</ul>
+
+<p>
+  <strong>Professores:</strong>
+</p>
+<ul>
+  <% @klass.teachers.each do |s| %>
+  <li><%= link_to s.name, teacher_path(s) %></li>
+  <% end %>
+</ul>

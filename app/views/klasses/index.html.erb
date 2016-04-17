@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Klasses</h1>
+<h1>Turmas</h1>
 
-<%= link_to 'New Klass', new_klass_path %>
+<%= link_to 'Cadastrar Turma', new_klass_path %>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Nome</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +16,9 @@
     <% @klasses.each do |klass| %>
       <tr>
         <td><%= klass.title %></td>
-        <td><%= link_to 'Show', klass %></td>
-        <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
-        <td><%= link_to 'Destroy', klass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', klass %></td>
+        <td><%= link_to 'Atualizar', edit_klass_path(klass) %></td>
+        <td><%= link_to 'Apagar', klass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

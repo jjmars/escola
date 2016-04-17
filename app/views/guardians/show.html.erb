@@ -1,14 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>School:</strong>
-  <%= @guardian.school %>
-</p>
+<h1>Responsável</h1>
 
-<p>
-  <strong>Unit:</strong>
-  <%= @guardian.unit %>
-</p>
+<%= link_to 'Atualizar', edit_guardian_path(@guardian) %> |
+<%= link_to 'Listar', guardians_path %>
 
 <p>
   <strong>Name:</strong>
@@ -16,19 +11,34 @@
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>Telefone:</strong>
   <%= @guardian.phone %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>E-mail:</strong>
   <%= @guardian.email %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Endereço:</strong>
   <%= @guardian.address %>
 </p>
 
-<%= link_to 'Edit', edit_guardian_path(@guardian) %> |
-<%= link_to 'Back', guardians_path %>
+<p>
+  <strong>Alunos:</strong>
+</p>
+<ul>
+  <% @guardian.students.each do |s| %>
+  <li><%= link_to s.name, student_path(s) %></li>
+  <% end %>
+</ul>
+
+<p>
+  <strong>Unidades:</strong>
+</p>
+<ul>
+  <% @guardian.units.each do |u| %>
+  <li><%= link_to u.title, unit_path(u) %></li>
+  <% end %>
+</ul>
