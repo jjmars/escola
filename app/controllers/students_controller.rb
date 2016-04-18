@@ -67,6 +67,9 @@ class StudentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
+      redirect_to root_path if @student.school_id != current_school.id
+    rescue
+      redirect_to root_path
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

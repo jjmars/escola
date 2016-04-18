@@ -16,7 +16,11 @@
 
 <header>
   <nav>
-    <%= link_to current_school.title, root_path %>
+    <%= link_to current_school.title, root_path if current_school %>
+    <% if current_user %>
+    | Você está autenticado como <%= link_to current_user.email, edit_user_registration_path %>
+    | <%= link_to 'Sair', destroy_user_session_path, method: :delete, data: { confirm: 'Sair?' } %>
+    <% end %>
   </nav>
   <%= "↳ #{current_unit.title}" if current_unit %>
 </header>

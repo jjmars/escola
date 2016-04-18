@@ -66,6 +66,9 @@ class KlassesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_klass
       @klass = Klass.find(params[:id])
+      redirect_to root_path if @klass.school_id != current_school.id
+    rescue
+      redirect_to root_path
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

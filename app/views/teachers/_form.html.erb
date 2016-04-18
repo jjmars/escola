@@ -33,8 +33,11 @@
   </div>
   <div class="field">
     <%= f.label :klass_ids %><br>
-    <%= f.select :klass_ids, option_groups_from_collection_for_select(Unit.all.includes(:klasses), :klasses, :title, :id, :title), 
-                 {}, { multiple: true, size: Klass.count + Unit.count } %>
+    <% if current_school.klasses.count == 0 %>
+    <p class="field_with_errors">Ainda não há turmas cadastradas. <%= link_to 'Cadastrar Turma', new_klass_path %></p>
+    <% end %>
+    <%= f.select :klass_ids, option_groups_from_collection_for_select(current_school.units.includes(:klasses), :klasses, :title, :id, :title), 
+                 {}, { multiple: true, size: current_school.klasses.count + current_school.units.count } %>
     <small>Segure Ctrl no teclado para selecionar mais de uma turma</small>
   </div>
   <div class="actions">

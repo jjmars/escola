@@ -4,7 +4,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    redirect_to root_path
   end
 
   # GET /schools/1
@@ -14,6 +14,9 @@ class SchoolsController < ApplicationController
 
   # GET /schools/new
   def new
+    if current_school
+      redirect_to root_path
+    end
     @school = School.new
   end
 
@@ -28,7 +31,9 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       if @school.save
-        format.html { redirect_to @school, notice: 'School was successfully created.' }
+        current_user.update_attribute(:school, @school)
+        
+        format.html { redirect_to root_path, notice: 'School was successfully created.' }
         format.json { render :show, status: :created, location: @school }
       else
         format.html { render :new }
@@ -42,7 +47,7 @@ class SchoolsController < ApplicationController
   def update
     respond_to do |format|
       if @school.update(school_params)
-        format.html { redirect_to @school, notice: 'School was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'School was successfully updated.' }
         format.json { render :show, status: :ok, location: @school }
       else
         format.html { render :edit }
@@ -56,7 +61,7 @@ class SchoolsController < ApplicationController
   def destroy
     @school.destroy
     respond_to do |format|
-      format.html { redirect_to schools_url, notice: 'School was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'School was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +69,7 @@ class SchoolsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_school
-      @school = School.find(params[:id])
+      @school = current_school
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

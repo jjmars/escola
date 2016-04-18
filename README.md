@@ -5,6 +5,32 @@
 
 Ferramenta administrativa para escolas. Gerencie unidades, turmas, professores, alunos e responsáveis.
 
+## Deploy
+
+### Variáveis de ambiente
+
+É preciso criar as seguintes variáveis de ambiente:
+
+* DOMAIN
+* SMTP_ADDRESS
+* SMTP_PORT
+* SMTP_USERNAME
+* SMTP_PASSWORD
+
+Estas variáveis configuram o ActionMailer em `config/application.rb`:
+
+    config.action_mailer.smtp_settings = {
+        domain:               ENV['DOMAIN'],
+        address:              ENV['SMTP_ADDRESS'],
+        port:                 ENV['SMTP_PORT'],
+        user_name:            ENV['SMTP_USERNAME'],
+        password:             ENV['SMTP_PASSWORD'],
+        authentication:       'plain',
+        enable_starttls_auto: true
+    }
+
+Sugere-se a utilização do plugin [rbenv-vars](https://github.com/rbenv/rbenv-vars).
+
 ## Notas
 
 ### Contagem de relações na página principal

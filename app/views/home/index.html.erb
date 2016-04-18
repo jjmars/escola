@@ -1,5 +1,10 @@
 <h1><%= current_school.title %></h1>
 
+<%= link_to 'Editar', edit_school_path(current_school) %> |
+<%= link_to 'Cadastrar Unidade', new_unit_path %>
+
+<br><br>
+
 <table>
   <thead>
     <tr>

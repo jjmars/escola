@@ -1,7 +1,8 @@
 <h1>Turma</h1>
 
 <%= link_to 'Atualizar', edit_klass_path(@klass) %> |
-<%= link_to 'Listar', klasses_path %>
+<%= link_to 'Listar', klasses_path %> |
+<%= link_to 'Cadastrar Turma', new_klass_path %>
 
 <p>
   <strong>Nome:</strong>
@@ -22,6 +23,8 @@
   <% end %>
 </ul>
 
+<%= link_to 'Cadastrar Aluno', new_student_path %>
+
 <p>
   <strong>Professores:</strong>
 </p>
@@ -30,3 +33,5 @@
   <li><%= link_to s.name, teacher_path(s) %></li>
   <% end %>
 </ul>
+
+<%= link_to 'Cadastrar Professor', new_teacher_path %>

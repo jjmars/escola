@@ -1,5 +1,13 @@
 source 'https://rubygems.org'
 
+# Repository for collecting Locale data for Ruby on Rails I18n. https://github.com/svenfuchs/rails-i18n
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
+
+# Translations for the devise gem. https://github.com/tigrish/devise-i18n
+gem 'devise-i18n'
+# Flexible authentication solution for Rails with Warden. https://github.com/plataformatec/devise
+gem 'devise'
+
 # Easy and customizable generation of forged data. https://github.com/sevenwire/forgery
 gem 'forgery', '0.6.0'
 
