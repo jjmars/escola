@@ -25,6 +25,7 @@ class KlassesController < ApplicationController
   # POST /klasses.json
   def create
     @klass = Klass.new(klass_params)
+    @klass.school = current_school
 
     respond_to do |format|
       if @klass.save
@@ -69,6 +70,6 @@ class KlassesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def klass_params
-      params.require(:klass).permit(:school_id, :unit_id, :title)
+      params.require(:klass).permit(:unit_id, :title)
     end
 end

@@ -1,16 +1,19 @@
 class Student < ActiveRecord::Base
+  include ActiveModel::Dirty
+  
   belongs_to :school
   belongs_to :unit
   belongs_to :guardian
-  has_and_belongs_to_many :klasses, -> { order(:title) } # está em várias turmas
+  has_and_belongs_to_many :klasses # está em várias turmas
   
-  validates_presence_of :school, :unit, :guardian, :name, :enrollment
+  before_validation :remove_klasses_outside_unit
+  
+  validates_presence_of :school_id, :unit_id, :guardian_id, :name, :enrollment
   validates_uniqueness_of :enrollment, scope: :school_id # não pode haver duas matrículas iguais na mesma escola
   
-  before_save :add_unit_to_guardian, unless: Proc.new { |s| s.guardian.units.include? s.unit }
+  private
   
-  def add_unit_to_guardian
-    guardian.units << unit
-    guardian.save
-  end
+    def remove_klasses_outside_unit
+      self.klasses = self.klasses.select { |k| k.unit_id == unit_id } if unit_id_changed?
+    end
 end

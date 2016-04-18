@@ -6,10 +6,6 @@ class GuardianTest < ActiveSupport::TestCase
   
   test 'deve pertencer a 1 escola' do
     assert_nothing_raised { Guardian.new.school }
-  end  
-
-  test 'deve estar associado a n unidades' do
-    assert_nothing_raised { Guardian.new.units }
   end
   
   test 'deve possuir N alunos' do
@@ -21,7 +17,6 @@ class GuardianTest < ActiveSupport::TestCase
   test 'deve salvar válido' do
     guardian = Guardian.new do |g|
       g.school  = schools(:one)
-      g.units   << units(:one)
       g.name    = 'Aline Alves'
       g.cpf     = '900.112.815-70'
       g.phone   = '(85) 3030-3030'
@@ -31,26 +26,13 @@ class GuardianTest < ActiveSupport::TestCase
     assert guardian.save, 'Falhou ao salvar registro válido'
   end
   
-  test 'deve salvar válido sem campos opcionais' do
-    guardian = Guardian.new do |g|
-      g.school  = schools(:one)
-      # g.units   << units(:one)
-      g.name    = 'Breno Barreto'
-      g.cpf     = '311.014.900-12'
-      g.phone   = '(85) 4040-4040'
-      g.email   = 'brenobarreto@example.com'
-      g.address = 'Rua Beta, 10, Fortaleza - CE'
-    end
-    assert guardian.save, 'Falhou ao salvar registro válido'
-  end
-  
   test 'deve salvar válido com cpf usado em outra escola' do
     guardian = Guardian.new do |g|
       g.school  = schools(:two) # outra escola
-      g.name    = 'Breno Barreto'
-      g.cpf     = '311.014.900-12' # mesmo responsável do teste acima
+      g.name    = 'Qualquer Nome'
+      g.cpf     = guardians(:one).cpf # cpf usado na escola :one
       g.phone   = '(85) 4030-3030'
-      g.email   = 'brenobarreto@example.com'
+      g.email   = 'qualquernome@example.com'
       g.address = 'Rua Beta, 10, Fortaleza - CE'
     end
     assert guardian.save, 'Falhou ao salvar registro válido'

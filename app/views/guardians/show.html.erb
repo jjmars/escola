@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Responsável</h1>
 
 <%= link_to 'Atualizar', edit_guardian_path(@guardian) %> |
-<%= link_to 'Listar', guardians_path %>
+<%= link_to 'Listar', guardians_path %> |
+<%= link_to 'Apagar', guardian_path(@guardian), method: :delete, data: { confirm: 'Todos os alunos dependentes serão apagados. Continuar?' } %>
 
 <p>
   <strong>Name:</strong>
@@ -34,11 +33,4 @@
   <% end %>
 </ul>
 
-<p>
-  <strong>Unidades:</strong>
-</p>
-<ul>
-  <% @guardian.units.each do |u| %>
-  <li><%= link_to u.title, unit_path(u) %></li>
-  <% end %>
-</ul>
+<%= link_to 'Cadastrar Aluno', new_student_path %>

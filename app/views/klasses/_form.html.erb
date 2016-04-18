@@ -1,4 +1,6 @@
-<%= form_for(@klass) do |f| %>
+<% if @klass.persisted? then form_for_data = { confirm: 'Esta turma pode estar associada a vários alunos e professores. Deseja continuar?' } end %>
+
+<%= form_for(@klass, data: form_for_data) do |f| %>
   <% if @klass.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@klass.errors.count, "error") %> prohibited this klass from being saved:</h2>
@@ -12,12 +14,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :school_id %><br>
-    <%= f.text_field :school_id %>
-  </div>
-  <div class="field">
     <%= f.label :unit_id %><br>
-    <%= f.text_field :unit_id %>
+    <%= f.select :unit_id, current_school.units.map { |u| [u.title, u.id] }.to_h %>
   </div>
   <div class="field">
     <%= f.label :title %><br>

@@ -1,10 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Escola
 @school = School.create do |s|
@@ -56,14 +51,13 @@ end
 @students = []
 for i in 1..500 do
   s_unit = @units.sample # unidade do aluno (aleatória)
-  s_unit_klasses = @klasses.select { |k| k.unit_id == s_unit.id } # turmas da unidade do aluno (todas)
-  s_klasses = s_unit_klasses.sample(rand 2) # turmas do aluno (aleatórias dentre todas da unidade do aluno)
+  s_klasses = @klasses.select{ |k| k.unit_id == s_unit.id }.sample(rand 1..2) # turmas do aluno (aleatórias dentre todas da unidade do aluno)
   
   @students << Student.create do |s|
     s.school     = @school
     s.unit       = s_unit
     s.klasses    = s_klasses
-    s.guardian   = @guardians.sample
+    s.guardian   = @guardians.sample # responsável (aleatório)
     s.name       = Forgery('name').full_name
     s.enrollment = CPF.generate
     s.phone      = Forgery('address').phone
@@ -75,15 +69,9 @@ end
 # Professores
 @teachers = []
 for i in 1..50 do
-  t_units = @units.sample(rand @units.length) # unidades do professor (aleatórias)
-  t_units_ids = t_units.map(&:id) # ids das unidades do professor
-  t_units_klasses = @klasses.select { |k| t_units_ids.include?(k.unit_id) } # turmas das unidades do professor (todas)
-  t_klasses = t_units_klasses.sample(rand 6) # turmas do professor (aleatórias dentre todas das unidades do professor)
-
   @teachers << Teacher.create do |t|
     t.school  = @school
-    t.units   << t_units
-    t.klasses << t_klasses
+    t.klasses << @klasses.sample(rand 10) # turmas do professor (aleatórias)
     t.name    = Forgery('name').full_name
     t.cpf     = CPF.generate
     t.phone   = Forgery('address').phone

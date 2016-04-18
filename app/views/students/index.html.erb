@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Alunos</h1>
 
 <%= link_to 'Cadastrar Aluno', new_student_path %>
@@ -9,7 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Enrollment</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -20,7 +18,6 @@
         <td><%= student.enrollment %></td>
         <td><%= link_to 'Ver', student %></td>
         <td><%= link_to 'Atualizar', edit_student_path(student) %></td>
-        <td><%= link_to 'Apagar', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

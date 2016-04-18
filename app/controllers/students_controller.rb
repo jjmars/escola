@@ -15,6 +15,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    @student.unit = current_school.units.first
   end
 
   # GET /students/1/edit
@@ -25,6 +26,7 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
+    @student.school = current_school
 
     respond_to do |format|
       if @student.save
@@ -69,6 +71,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:school_id, :unit_id, :name, :registration_number, :phone, :email, :address)
+      params.require(:student).permit(:unit_id, :guardian_id, :name, :enrollment, :phone, :email, :address, :klass_ids => [])
     end
 end

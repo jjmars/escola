@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Unidade</h1>
 
 <%= link_to 'Atualizar', edit_unit_path(@unit) %> |
-<%= link_to 'Listar', units_path %>
+<%= link_to 'Listar', units_path %> |
+<%= link_to 'Apagar', unit_path(@unit), method: :delete,  data: { confirm: 'Todas as turmas desta unidade serão apagadas e os alunos ficarão com o campo \'Unidade\' em branco. Continuar?' } %>
 
 <p>
   <strong>Nome:</strong>

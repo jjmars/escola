@@ -12,16 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :school_id %><br>
-    <%= f.text_field :school_id %>
-  </div>
-  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :registration_number %><br>
-    <%= f.text_field :registration_number %>
+    <%= f.label :cpf %><br>
+    <%= f.text_field :cpf %>
   </div>
   <div class="field">
     <%= f.label :phone %><br>
@@ -34,6 +30,12 @@
   <div class="field">
     <%= f.label :address %><br>
     <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :klass_ids %><br>
+    <%= f.select :klass_ids, option_groups_from_collection_for_select(Unit.all.includes(:klasses), :klasses, :title, :id, :title), 
+                 {}, { multiple: true, size: Klass.count + Unit.count } %>
+    <small>Segure Ctrl no teclado para selecionar mais de uma turma</small>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -25,6 +25,7 @@ class GuardiansController < ApplicationController
   # POST /guardians.json
   def create
     @guardian = Guardian.new(guardian_params)
+    @guardian.school = current_school
 
     respond_to do |format|
       if @guardian.save
@@ -62,13 +63,13 @@ class GuardiansController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_guardian
       @guardian = Guardian.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guardian_params
-      params.require(:guardian).permit(:school_id, :unit_id, :name, :phone, :email, :address)
+      params.require(:guardian).permit(:name, :cpf, :phone, :email, :address)
     end
 end

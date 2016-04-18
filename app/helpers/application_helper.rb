@@ -4,6 +4,6 @@ module ApplicationHelper
   end
   
   def current_school
-    return @school ||= School.first # TODO: substituir pela escola do usuário
+    return @current_school ||= School.first # TODO: substituir pela escola do usuário
   end
 end

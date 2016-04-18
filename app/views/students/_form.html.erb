@@ -12,20 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :school_id %><br>
-    <%= f.text_field :school_id %>
-  </div>
-  <div class="field">
-    <%= f.label :unit_id %><br>
-    <%= f.text_field :unit_id %>
-  </div>
-  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :registration_number %><br>
-    <%= f.text_field :registration_number %>
+    <%= f.label :enrollment %><br>
+    <%= f.text_field :enrollment %>
   </div>
   <div class="field">
     <%= f.label :phone %><br>
@@ -38,6 +30,21 @@
   <div class="field">
     <%= f.label :address %><br>
     <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_id %><br>
+    <%= f.select :unit_id, current_school.units.map { |u| [u.title, u.id] }.to_h %>
+    <small>Importante: ao mudar a unidade do aluno, ele será removido das turmas que não pertencem à nova unidade</small>
+  </div>
+  <div class="field">
+    <%= f.label :klass_ids %><br>
+    <%= f.select :klass_ids, option_groups_from_collection_for_select(Unit.all.includes(:klasses), :klasses, :title, :id, :title), 
+                 {}, { multiple: true, size: Klass.count + Unit.count } %>
+    <small>Segure Ctrl no teclado para selecionar mais de uma turma</small>
+  </div>
+  <div class="field">
+    <%= f.label :guardian_id %><br>
+    <%= f.select :guardian_id, options_from_collection_for_select(current_school.guardians, :id, :name), prompt: true %>
   </div>
   <div class="actions">
     <%= f.submit %>

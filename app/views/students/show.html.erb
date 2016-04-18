@@ -1,13 +1,12 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Aluno</h1>
 
 <%= link_to 'Atualizar', edit_student_path(@student) %> |
-<%= link_to 'Listar', students_path %>
+<%= link_to 'Listar', students_path %> |
+<%= link_to 'Apagar', student_path(@student), method: :delete, data: { confirm: 'Tem certeza?' } %>
 
 <p>
   <strong>Unidade:</strong>
-  <%= link_to @student.unit.title, unit_path(@student.unit) %>
+  <%= link_to @student.unit.title, unit_path(@student.unit) if @student.unit %>
 </p>
 
 <p>

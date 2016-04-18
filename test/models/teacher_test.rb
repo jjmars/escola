@@ -21,7 +21,6 @@ class TeacherTest < ActiveSupport::TestCase
   test 'deve salvar válido' do
     teacher = Teacher.new do |t|
       t.school  = schools(:one)
-      t.units   << units(:one)
       t.klasses << klasses(:one)
       t.name    = 'Aline Alves'
       t.cpf     = '900.112.815-70'
@@ -35,7 +34,6 @@ class TeacherTest < ActiveSupport::TestCase
   test 'deve salvar válido sem campos opcionais' do
     teacher = Teacher.new do |t|
       t.school  = schools(:one)
-      # t.units   << units(:one)
       # t.klasses << klasses(:one)
       t.name    = 'Breno Barreto'
       t.cpf     = '311.014.900-12'
@@ -128,7 +126,6 @@ class TeacherTest < ActiveSupport::TestCase
   test 'deve falhar ao salvar sem endereço' do
     teacher = Teacher.new do |t|
       t.school  = schools(:one)
-      t.units   << units(:one)
       t.name    = 'Camila Castro'
       t.cpf     = '963.575.566-02'
       t.phone   = '(85) 5050-5050'
