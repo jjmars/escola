@@ -10,6 +10,13 @@
   s.address = Forgery('address').street_address
 end
 
+@user = User.create do |u|
+  u.school                = @school
+  u.email                 = 'admin@admin.com'
+  u.password              = 'adminadmin'
+  u.password_confirmation = 'adminadmin'
+end
+
 # Unidades
 @units = []
 for i in 1..5 do

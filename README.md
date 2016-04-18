@@ -7,6 +7,10 @@ Ferramenta administrativa para escolas. Gerencie unidades, turmas, professores, 
 
 ## Deploy
 
+### seeds.rb
+
+Para popular o banco com dados amostrais, execute `rake db:seed`.
+
 ### Variáveis de ambiente
 
 É preciso criar as seguintes variáveis de ambiente:
